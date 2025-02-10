@@ -1,12 +1,21 @@
 package main
 
 import (
+	"fmt"
 	"net/http"
+	ruleset "open-rts/ruleset/resource"
 
 	"github.com/gorilla/mux"
 )
 
 func main() {
+	resources, err := ruleset.ParseResources("ruleset/resource/resources_ruleset.json")
+	if err != nil {
+		panic(err)
+	}
+
+	fmt.Println(resources)
+
 	serveApplication()
 }
 

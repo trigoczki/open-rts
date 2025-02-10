@@ -1,0 +1,27 @@
+[
+    {
+        "name": "Wood",
+        "description": "A soft, lightweight material used for construction and crafting.",
+        "resourceId": "wood"
+    },
+    {
+        "name": "Stone",
+        "description": "A hard, durable material used for construction and defences.",
+        "resourceId": "stone"
+    },
+    {
+        "name": "Iron",
+        "description": "A metal used for construction and weaponry.",
+        "resourceId": "iron"
+    },
+    {
+        "name": "Gold",
+        "description": "A precious metal used primarily as currency and for upkeep.",
+        "resourceId": "gold"
+    },
+    {
+        "name": "Food",
+        "description": "A basic necessity for sustaining life.",
+        "resourceId": "food"
+    }
+]
