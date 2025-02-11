@@ -1,0 +1,454 @@
+[
+    {
+        "id": "farm",
+        "name": "Farm",
+        "description": "Produces food",
+        "maxLevel": 10,
+        "metadataMode": "FORMULA",
+        "buildingTime": {
+            "baseBuildingTime": 10,
+            "buildingTimeFormula": "baseBuildingTime * (buildingLevel)^growthFactor * (1 - buildTimeModifier)"
+        },
+        "costs": {
+            "baseCosts": [
+                {
+                    "resourceId": "wood",
+                    "amount": 10
+                },
+                {
+                    "resourceId": "stone",
+                    "amount": 10
+                },
+                {
+                    "resourceId": "iron",
+                    "amount": 10
+                },
+                {
+                    "resourceId": "gold",
+                    "amount": 10
+                }
+            ],
+            "costFormula": "baseCost * (buildingLevel)^growthFactor * (1 - resourceCostModifier)"
+        },
+        "production": {
+            "baseProduction": [
+                {
+                    "resourceId": "food",
+                    "amount": 10
+                }
+            ],
+            "productionFormula": "baseProduction * (buildingLevel)^growthFactor * (1 - productionModifier)"
+        },
+        "modifier": {
+            "baseModifier": [
+                {
+                    "type": "buildResourceCostReduction",
+                    "scope": "LOCAL",
+                    "resourceId": "wood",
+                    "factor": 0.005
+                },
+                {
+                    "type": "resourceProductionModifier",
+                    "scope": "LOCAL",
+                    "resourceId": "food",
+                    "factor": 0.1,
+                    "modifierFormula": "baseModifier * (buildingLevel)^growthFactor * (1 + factor)"
+                },
+                {
+                    "type": "buildTimeReduction",
+                    "scope": "LOCAL",
+                    "factor": 0.005
+                },
+                {
+                    "type": "populationGrowth",
+                    "scope": "GLOBAL",
+                    "resourceId": "population",
+                    "factor": 0.001,
+                    "modifierFormula": "baseModifier * (buildingLevel)^growthFactor * (1 + factor)"
+                }
+            ],
+            "modifierFormula": "baseModifier * (buildingLevel)^growthFactor * (1 - factor)"
+        },
+        "growthFactor": 1.3
+    },
+    {
+        "id": "iron_mine",
+        "name": "Iron Mine",
+        "description": "Produces iron",
+        "maxLevel": 10,
+        "metadataMode": "CONCRETE",
+        "metadata": {
+            "1": {
+                "baseBuildingTime": 10,
+                "baseCost": [
+                    {
+                        "resourceId": "wood",
+                        "amount": 10
+                    },
+                    {
+                        "resourceId": "stone",
+                        "amount": 10
+                    }
+                ],
+                "baseProduction": [
+                    {
+                        "resourceId": "iron",
+                        "amount": 10
+                    }
+                ],
+                "baseModifier": [
+                    {
+                        "type": "buildResourceCostReduction",
+                        "scope": "LOCAL",
+                        "resourceId": "wood",
+                        "factor": 0.005
+                    }
+                ]
+            },
+            "2": {
+                "baseBuildingTime": 20,
+                "baseCost": [
+                    {
+                        "resourceId": "wood",
+                        "amount": 20
+                    },
+                    {
+                        "resourceId": "stone",
+                        "amount": 20
+                    }
+                ],
+                "baseProduction": [
+                    {
+                        "resourceId": "iron",
+                        "amount": 20
+                    }
+                ],
+                "baseModifier": [
+                    {
+                        "type": "buildResourceCostReduction",
+                        "scope": "LOCAL",
+                        "resourceId": "wood",
+                        "factor": 0.01
+                    }
+                ]
+            },
+            "3": {
+                "baseBuildingTime": 30,
+                "baseCost": [
+                    {
+                        "resourceId": "wood",
+                        "amount": 30
+                    },
+                    {
+                        "resourceId": "stone",
+                        "amount": 30
+                    }
+                ],
+                "baseProduction": [
+                    {
+                        "resourceId": "iron",
+                        "amount": 30
+                    }
+                ],
+                "baseModifier": [
+                    {
+                        "type": "buildResourceCostReduction",
+                        "scope": "LOCAL",
+                        "resourceId": "wood",
+                        "factor": 0.015
+                    }
+                ]
+            },
+            "4": {
+                "baseBuildingTime": 40,
+                "baseCost": [
+                    {
+                        "resourceId": "wood",
+                        "amount": 40
+                    },
+                    {
+                        "resourceId": "stone",
+                        "amount": 40
+                    }
+                ],
+                "baseProduction": [
+                    {
+                        "resourceId": "iron",
+                        "amount": 40
+                    }
+                ],
+                "baseModifier": [
+                    {
+                        "type": "buildResourceCostReduction",
+                        "scope": "LOCAL",
+                        "resourceId": "wood",
+                        "factor": 0.02
+                    }
+                ]
+            },
+            "5": {
+                "baseBuildingTime": 50,
+                "baseCost": [
+                    {
+                        "resourceId": "wood",
+                        "amount": 50
+                    },
+                    {
+                        "resourceId": "stone",
+                        "amount": 50
+                    }
+                ],
+                "baseProduction": [
+                    {
+                        "resourceId": "iron",
+                        "amount": 50
+                    }
+                ],
+                "baseModifier": [
+                    {
+                        "type": "buildResourceCostReduction",
+                        "scope": "LOCAL",
+                        "resourceId": "wood",
+                        "factor": 0.025
+                    }
+                ]
+            },
+            "6": {
+                "baseBuildingTime": 60,
+                "baseCost": [
+                    {
+                        "resourceId": "wood",
+                        "amount": 60
+                    },
+                    {
+                        "resourceId": "stone",
+                        "amount": 60
+                    }
+                ],
+                "baseProduction": [
+                    {
+                        "resourceId": "iron",
+                        "amount": 60
+                    }
+                ],
+                "baseModifier": [
+                    {
+                        "type": "buildResourceCostReduction",
+                        "scope": "LOCAL",
+                        "resourceId": "wood",
+                        "factor": 0.03
+                    }
+                ]
+            },
+            "7": {
+                "baseBuildingTime": 70,
+                "baseCost": [
+                    {
+                        "resourceId": "wood",
+                        "amount": 70
+                    },
+                    {
+                        "resourceId": "stone",
+                        "amount": 70
+                    }
+                ],
+                "baseProduction": [
+                    {
+                        "resourceId": "iron",
+                        "amount": 70
+                    }
+                ],
+                "baseModifier": [
+                    {
+                        "type": "buildResourceCostReduction",
+                        "scope": "LOCAL",
+                        "resourceId": "wood",
+                        "factor": 0.035
+                    }
+                ]
+            },
+            "8": {
+                "baseBuildingTime": 80,
+                "baseCost": [
+                    {
+                        "resourceId": "wood",
+                        "amount": 80
+                    },
+                    {
+                        "resourceId": "stone",
+                        "amount": 80
+                    }
+                ],
+                "baseProduction": [
+                    {
+                        "resourceId": "iron",
+                        "amount": 80
+                    }
+                ],
+                "baseModifier": [
+                    {
+                        "type": "buildResourceCostReduction",
+                        "scope": "LOCAL",
+                        "resourceId": "wood",
+                        "factor": 0.04
+                    }
+                ]
+            },
+            "9": {
+                "baseBuildingTime": 90,
+                "baseCost": [
+                    {
+                        "resourceId": "wood",
+                        "amount": 90
+                    },
+                    {
+                        "resourceId": "stone",
+                        "amount": 90
+                    }
+                ],
+                "baseProduction": [
+                    {
+                        "resourceId": "iron",
+                        "amount": 90
+                    }
+                ],
+                "baseModifier": [
+                    {
+                        "type": "buildResourceCostReduction",
+                        "scope": "LOCAL",
+                        "resourceId": "wood",
+                        "factor": 0.045
+                    }
+                ]
+            },
+            "10": {
+                "baseBuildingTime": 100,
+                "baseCost": [
+                    {
+                        "resourceId": "wood",
+                        "amount": 100
+                    },
+                    {
+                        "resourceId": "stone",
+                        "amount": 100
+                    }
+                ],
+                "baseProduction": [
+                    {
+                        "resourceId": "iron",
+                        "amount": 100
+                    }
+                ],
+                "baseModifier": [
+                    {
+                        "type": "buildResourceCostReduction",
+                        "scope": "LOCAL",
+                        "resourceId": "wood",
+                        "factor": 0.05
+                    }
+                ]
+            }
+        }
+    },
+    {
+        "id": "stone_quarry",
+        "name": "Stone Quarry",
+        "description": "Produces stone",
+        "maxLevel": 10,
+        "metadataMode": "MIXED",
+        "buildingTime": {
+            "baseBuildingTime": 10,
+            "buildingTimeFormula": "baseBuildingTime * (buildingLevel)^growthFactor * (1 - buildTimeModifier)"
+        },
+        "costs": {
+            "baseCosts": [
+                {
+                    "resourceId": "wood",
+                    "amount": 10
+                },
+                {
+                    "resourceId": "stone",
+                    "amount": 10
+                },
+                {
+                    "resourceId": "iron",
+                    "amount": 10
+                },
+                {
+                    "resourceId": "gold",
+                    "amount": 10
+                }
+            ],
+            "costFormula": "baseCost * (buildingLevel)^growthFactor * (1 - resourceCostModifier)"
+        },
+        "production": {
+            "baseProduction": [
+                {
+                    "resourceId": "stone",
+                    "amount": 10
+                }
+            ],
+            "productionFormula": "baseProduction * (buildingLevel)^growthFactor * (1 - productionModifier)"
+        },
+        "modifier": {
+            "baseModifier": [
+                {
+                    "type": "buildResourceCostReduction",
+                    "scope": "LOCAL",
+                    "resourceId": "wood",
+                    "factor": 0.005
+                },
+                {
+                    "type": "resourceProductionModifier",
+                    "scope": "LOCAL",
+                    "resourceId": "stone",
+                    "factor": 0.1,
+                    "modifierFormula": "baseModifier * (buildingLevel)^growthFactor * (1 + factor)"
+                },
+                {
+                    "type": "buildTimeReduction",
+                    "scope": "LOCAL",
+                    "factor": 0.005
+                },
+                {
+                    "type": "populationGrowth",
+                    "scope": "GLOBAL",
+                    "resourceId": "population",
+                    "factor": 0.001,
+                    "modifierFormula": "baseModifier * (buildingLevel)^growthFactor * (1 + factor)"
+                }
+            ],
+            "modifierFormula": "baseModifier * (buildingLevel)^growthFactor * (1 - factor)"
+        },
+        "growthFactor": 1.3,
+        "metadata": {
+            "5": {
+                "baseBuildingTime": 50,
+                "baseCost": [
+                    {
+                        "resourceId": "wood",
+                        "amount": 50
+                    },
+                    {
+                        "resourceId": "stone",
+                        "amount": 50
+                    }
+                ],
+                "baseProduction": [
+                    {
+                        "resourceId": "iron",
+                        "amount": 50
+                    }
+                ],
+                "baseModifier": [
+                    {
+                        "type": "buildResourceCostReduction",
+                        "scope": "LOCAL",
+                        "resourceId": "wood",
+                        "factor": 0.025
+                    }
+                ]
+            }
+        }
+    }
+]
