@@ -1,0 +1,294 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "array",
+  "title": "Buildings Ruleset Schema",
+  "description": "Schema for validating buildings_ruleset.json",
+  "additionalProperties": false,
+  "items": {
+    "type": "object",
+    "required": [
+      "id",
+      "name",
+      "description",
+      "maxLevel",
+      "metadataMode"
+    ],
+    "additionalProperties": false,
+    "properties": {
+      "id": {
+        "type": "string",
+        "description": "Unique identifier for the building"
+      },
+      "name": {
+        "type": "string",
+        "description": "Name of the building"
+      },
+      "description": {
+        "type": "string",
+        "description": "Description of the building"
+      },
+      "maxLevel": {
+        "type": "integer",
+        "minimum": 1,
+        "description": "Maximum level the building can be upgraded to"
+      },
+      "metadataMode": {
+        "type": "string",
+        "enum": [
+          "FORMULA",
+          "CONCRETE",
+          "MIXED"
+        ],
+        "description": "Defines whether the building uses formulas or pre-defined metadata"
+      },
+      "growthFactor": {
+        "type": "number",
+        "minimum": 1,
+        "description": "Growth factor applied to formula calculations"
+      },
+      "buildingTime": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "baseBuildingTime": {
+            "type": "number",
+            "minimum": 1,
+            "description": "Base time to build the building"
+          },
+          "buildingTimeFormula": {
+            "type": "string",
+            "description": "Formula to modify building time as the level grows"
+          }
+        },
+        "required": [
+          "baseBuildingTime",
+          "buildingTimeFormula"
+        ]
+      },
+      "costs": {
+        "type": "object",
+        "required": [
+          "baseCosts",
+          "costFormula"
+        ],
+        "additionalProperties": false,
+        "properties": {
+          "baseCosts": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "required": [
+                "resourceId",
+                "amount"
+              ],
+              "additionalProperties": false,
+              "properties": {
+                "resourceId": {
+                  "type": "string",
+                  "description": "ID of the resource required to build"
+                },
+                "amount": {
+                  "type": "number",
+                  "minimum": 0,
+                  "description": "Amount of the resource required"
+                }
+              }
+            }
+          },
+          "costFormula": {
+            "type": "string",
+            "description": "Formula to calculate building cost at higher levels"
+          }
+        }
+      },
+      "production": {
+        "type": "object",
+        "required": [
+          "baseProduction",
+          "productionFormula"
+        ],
+        "additionalProperties": false,
+        "properties": {
+          "baseProduction": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "required": [
+                "resourceId",
+                "amount"
+              ],
+              "additionalProperties": false,
+              "properties": {
+                "resourceId": {
+                  "type": "string",
+                  "description": "ID of the resource produced by the building"
+                },
+                "amount": {
+                  "type": "number",
+                  "minimum": 0,
+                  "description": "Amount of the resource produced"
+                }
+              }
+            }
+          },
+          "productionFormula": {
+            "type": "string",
+            "description": "Formula to calculate resource production at higher levels"
+          }
+        }
+      },
+      "modifier": {
+        "type": "object",
+        "required": [
+          "baseModifier",
+          "modifierFormula"
+        ],
+        "additionalProperties": false,
+        "properties": {
+          "baseModifier": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "required": [
+                "type",
+                "scope",
+                "factor"
+              ],
+              "additionalProperties": false,
+              "properties": {
+                "type": {
+                  "type": "string",
+                  "description": "Type of modifier applied by the building"
+                },
+                "scope": {
+                  "type": "string",
+                  "enum": [
+                    "LOCAL",
+                    "GLOBAL"
+                  ],
+                  "description": "The scope of the modifier (local or global)"
+                },
+                "resourceId": {
+                  "type": "string",
+                  "description": "ID of the affected resource (if applicable)"
+                },
+                "factor": {
+                  "type": "number",
+                  "description": "Factor used in the modifier calculation"
+                },
+                "modifierFormula": {
+                  "type": "string",
+                  "description": "Formula used to calculate the modifier's effect"
+                }
+              }
+            }
+          },
+          "modifierFormula": {
+            "type": "string",
+            "description": "General formula for calculating modifiers"
+          }
+        }
+      },
+      "levels": {
+        "type": "object",
+        "description": "Level-specific metadata if metadataMode is CONCRETE",
+        "patternProperties": {
+          "^[0-9]+$": {
+            "type": "object",
+            "required": [
+              "baseBuildingTime",
+              "baseCost"
+            ],
+            "additionalProperties": false,
+            "properties": {
+              "baseBuildingTime": {
+                "type": "number",
+                "minimum": 0,
+                "description": "Base time to build the building at this level"
+              },
+              "baseCost": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "required": [
+                    "resourceId",
+                    "amount"
+                  ],
+                  "additionalProperties": false,
+                  "properties": {
+                    "resourceId": {
+                      "type": "string",
+                      "description": "ID of the resource required for this level"
+                    },
+                    "amount": {
+                      "type": "number",
+                      "minimum": 0,
+                      "description": "Amount of resource required for this level"
+                    }
+                  }
+                }
+              },
+              "baseProduction": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "required": [
+                    "resourceId",
+                    "amount"
+                  ],
+                  "additionalProperties": false,
+                  "properties": {
+                    "resourceId": {
+                      "type": "string",
+                      "description": "ID of the resource produced at this level"
+                    },
+                    "amount": {
+                      "type": "number",
+                      "minimum": 0,
+                      "description": "Amount of the resource produced at this level"
+                    }
+                  }
+                }
+              },
+              "baseModifier": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "required": [
+                    "type",
+                    "scope",
+                    "factor"
+                  ],
+                  "additionalProperties": false,
+                  "properties": {
+                    "type": {
+                      "type": "string",
+                      "description": "Type of modifier applied at this level"
+                    },
+                    "scope": {
+                      "type": "string",
+                      "enum": [
+                        "LOCAL",
+                        "GLOBAL"
+                      ],
+                      "description": "Scope of this level's modifier"
+                    },
+                    "resourceId": {
+                      "type": "string",
+                      "description": "ID of a specific resource affected by the modifier"
+                    },
+                    "factor": {
+                      "type": "number",
+                      "minimum": 0,
+                      "description": "Modifier factor at this level"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
