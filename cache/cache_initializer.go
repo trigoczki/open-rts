@@ -2,24 +2,25 @@ package cache
 
 import (
 	"log"
-	"open-rts/ruleset"
+	"open-rts/ruleset/building"
 	rulesetResource "open-rts/ruleset/resource"
 )
 
 func Initialize() {
-	resources, err := rulesetResource.ParseResources("ruleset/resource/resources_ruleset.json")
+	resources, err := rulesetResource.ParseResources("ruleset/input/resources_ruleset.json")
 	if err != nil {
 		panic(err)
 	}
 
-	err = ruleset.ValidateJSON(resources, "ruleset/resource/resource_schema.json")
+	buildings, err := building.ParseBuildings("ruleset/input/buildings_ruleset.json")
 	if err != nil {
 		panic(err)
 	}
-	log.Println("Resources validated successfully")
 
 	cache := GetInstance()
 	cache.SetResources(resources)
 	log.Println("Resources set in cache")
+	cache.SetBuildings(buildings)
+	log.Println("Buildings set in cache")
 	log.Println("Cache initialized successfully")
 }

@@ -23,5 +23,10 @@
         "name": "Food",
         "description": "A basic necessity for sustaining life.",
         "resourceId": "food"
+    },
+    {
+        "name": "Population",
+        "description": "The number of people living in a city.",
+        "resourceId": "population"
     }
 ]

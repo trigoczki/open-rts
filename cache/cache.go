@@ -1,6 +1,7 @@
 package cache
 
 import (
+	"open-rts/ruleset/building"
 	ruleset "open-rts/ruleset/resource"
 	"sync"
 )
@@ -12,6 +13,7 @@ var (
 
 type Cache struct {
 	mu        sync.RWMutex
+	buildings []*building.Building
 	resources []*ruleset.Resource
 }
 
@@ -20,6 +22,18 @@ func GetInstance() *Cache {
 		instance = &Cache{}
 	})
 	return instance
+}
+
+func (c *Cache) SetBuildings(buildings []*building.Building) {
+	c.mu.Lock()
+	defer c.mu.Unlock()
+	c.buildings = buildings
+}
+
+func (c *Cache) GetBuildings() []*building.Building {
+	c.mu.RLock()
+	defer c.mu.RUnlock()
+	return c.buildings
 }
 
 func (c *Cache) SetResources(resources []*ruleset.Resource) {
