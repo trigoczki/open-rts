@@ -22,6 +22,11 @@ func ParseBuildings(path string) ([]*Building, error) {
 	if err != nil {
 		return nil, err
 	}
+	for _, building := range buildings {
+		if err := building.InitializeFormulas(); err != nil {
+			return nil, err
+		}
+	}
 
 	return buildings, nil
 }
