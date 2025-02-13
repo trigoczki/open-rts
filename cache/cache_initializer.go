@@ -7,12 +7,12 @@ import (
 )
 
 func Initialize() {
-	resources, err := rulesetResource.ParseResources("ruleset/resource/resources_ruleset.json")
+	resources, err := rulesetResource.ParseResources("ruleset/input/resources_ruleset.json")
 	if err != nil {
 		panic(err)
 	}
 
-	buildings, err := building.ParseBuildings("ruleset/building/buildings_ruleset.json")
+	buildings, err := building.ParseBuildings("ruleset/input/buildings_ruleset.json")
 	if err != nil {
 		panic(err)
 	}
